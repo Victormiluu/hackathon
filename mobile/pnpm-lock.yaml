@@ -17,6 +17,9 @@ importers:
       '@react-navigation/native-stack':
         specifier: ^7.3.21
         version: 7.3.21(@react-navigation/native@7.1.14(react-native@0.79.4(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-safe-area-context@5.5.0(react-native@0.79.4(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-screens@4.11.1(react-native@0.79.4(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.4(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+      '@tamagui/colors':
+        specifier: ^1.129.4
+        version: 1.129.4
       '@tamagui/config':
         specifier: ^1.129.4
         version: 1.129.4(react-dom@19.1.0(react@19.0.0))(react-native-reanimated@3.18.0(@babel/core@7.27.7)(react-native@0.79.4(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.4(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -26,6 +29,9 @@ importers:
       '@tamagui/portal':
         specifier: ^1.129.4
         version: 1.129.4(react-dom@19.1.0(react@19.0.0))(react-native@0.79.4(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+      '@tamagui/theme-builder':
+        specifier: ^1.129.4
+        version: 1.129.4(react-dom@19.1.0(react@19.0.0))(react@19.0.0)
       axios:
         specifier: ^1.10.0
         version: 1.10.0

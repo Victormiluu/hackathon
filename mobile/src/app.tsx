@@ -1,6 +1,5 @@
-import React, { useRef } from 'react';
-import { defaultConfig } from "@tamagui/config/v4"
-import { createTamagui, TamaguiProvider } from "tamagui"
+import React from 'react';
+import { TamaguiProvider } from "tamagui"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -13,6 +12,7 @@ import { Profile } from "./screens/profile";
 import { Ranking } from "./screens/ranking";
 import { Question } from "./screens/question";
 import { StatusBar } from "react-native";
+import { config } from './tamagui.config';
 
 
 const Tabs = () => {
@@ -27,7 +27,6 @@ const Tabs = () => {
 }
 
 export const App = () => {
-  const config = createTamagui(defaultConfig);
   const Stack = createNativeStackNavigator();
 
 

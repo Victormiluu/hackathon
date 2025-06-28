@@ -36,9 +36,9 @@ export const Question = () => {
     }, []);
 
     useEffect(() => {
-        if (questionIndex !== 0 && questionIndex % 3 === 0) {
-            console.log("Refresh");
+        if (questionIndex !== 0 && questionIndex % 2 === 0) {
             refreshQuestion().then((data) => {
+                console.log("Refresh");
                 setQuestions((prev) => [...(prev || []), ...data]);
             });
         }
