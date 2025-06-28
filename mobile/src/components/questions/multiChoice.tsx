@@ -26,30 +26,33 @@ export function MultiChoiceQuestionForm({ question, questionIndex, setQuestionIn
 
     const handleNextQuestion = () => {
         setQuestionIndex(questionIndex++);
+        setSendResponse(false);
+        setIsSelected(undefined);
     }
 
     return (
-        <YStack padding="$2" flex={1} maxWidth={800} alignSelf="center">
-            <H1 marginTop="$4" size="$8" fontWeight="700" textAlign="center">
+        <YStack padding="$2" gap="$6" height="90%" maxWidth={800} alignSelf="center">
+            <H1 size="$8" fontWeight="700" textAlign="center">
                 Escolha a opção correta
             </H1>
 
-            <Paragraph marginTop="$6" size="$5" color="gray" textAlign="center">
+            <Paragraph size="$5" color="gray" textAlign="center">
                 Escolha a alternativa corretas para a questão abaixo:
             </Paragraph>
 
-            <View marginTop="$6" padding="$4" backgroundColor="$backgroundHover" borderRadius="$4">
+            <View padding="$4" backgroundColor="$backgroundHover" borderRadius="$4">
                 <Text fontSize="$6" lineHeight="$7">
                     {question?.question.question}
                 </Text>
             </View>
 
-            <YStack gap="$3" marginTop="$6">
+            <YStack gap="$3">
                 {question?.options.map((word, index) => {
                     return (
                         <Button
                             key={word.id}
                             onPress={() => handleWordSelect(word.value, word.id, word.key)}
+                            disabled={sendResponse}
                             backgroundColor={sendResponse && question.question.correct_answer === word.key ? "$green7" : sendResponse && question.question.correct_answer !== word.key ? "$red5" : isSelected?.id === word.id ? "gray" : "$background"}
                             borderRadius="$6">
                             {word.value}
@@ -66,7 +69,7 @@ export function MultiChoiceQuestionForm({ question, questionIndex, setQuestionIn
                 )}
             </View>
 
-            <View marginTop="auto" alignItems="center">
+            <View marginTop="auto" >
                 {sendResponse ? (
                     <Button onPress={handleNextQuestion} theme="green" fullscreen size="$5">Proxima pergunta</Button>
                 ) : (

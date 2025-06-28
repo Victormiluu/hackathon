@@ -77,12 +77,12 @@ export function AudioQuestionForm() {
     };
 
     return (
-        <YStack padding="$2" flex={1} maxWidth={800} alignSelf="center">
-            <H1 marginTop="$4" size="$8" fontWeight="700" textAlign="center">
+        <YStack padding="$2" gap="$6" height="90%" maxWidth={800} alignSelf="center">
+            <H1 size="$8" fontWeight="700" textAlign="center">
                 Conte como é a rotina de um SRE
             </H1>
 
-            <Paragraph marginTop="$6" size="$5" color="gray" textAlign="center">
+            <Paragraph size="$5" color="gray" textAlign="center">
                 Grave um breve relato explicando o dia a dia de um(a) Site Reliability Engineer. Fale sobre atividades comuns, responsabilidades e principais desafios da função.
             </Paragraph>
 
