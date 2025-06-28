@@ -1,4 +1,4 @@
-import { useLinkTo } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { Check, StarFull } from "@tamagui/lucide-icons";
 import { Button, View } from "tamagui";
 
@@ -11,12 +11,14 @@ export const QuestionTrailNavigator = ({ index, item }: QuestionTrailNavigatorPr
     const amplitude = 200;
     const offset = Math.sin(index / 1) * amplitude;
     const triggerTheme = item.Finished ? "green" : item.select ? "blue" : "gray";
-    const linkTo = useLinkTo();
+    const navigation = useNavigation();
+
+
     const icon = item.Finished ? <Check /> : <StarFull />;
 
     const onPress = () => {
         if (!item.Finished) {
-            linkTo(`/Question`);
+            (navigation as any).navigate("Question", { item });
         }
     };
 

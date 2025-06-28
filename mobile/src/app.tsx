@@ -1,9 +1,11 @@
+import React, { useRef } from 'react';
 import { defaultConfig } from "@tamagui/config/v4"
 import { createTamagui, TamaguiProvider } from "tamagui"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { LayoutList, Trophy, User } from "@tamagui/lucide-icons";
+import ConfettiCannon from 'react-native-confetti-cannon';
 
 import { TabBar } from "./components/tabBar";
 
@@ -13,8 +15,6 @@ import { Ranking } from "./screens/ranking";
 import { Question } from "./screens/question";
 import { StatusBar } from "react-native";
 import { HeaderBar } from "./components/headerBar";
-
-
 
 
 const Tabs = () => {
@@ -31,6 +31,7 @@ const Tabs = () => {
 export const App = () => {
   const config = createTamagui(defaultConfig);
   const Stack = createNativeStackNavigator();
+
 
   return (
     <TamaguiProvider defaultTheme="dark" config={config} disableInjectCSS>

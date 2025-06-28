@@ -1,5 +1,6 @@
 import { YStack, H1, View, Paragraph, XStack, Button, Text } from "tamagui";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import ConfettiCannon from 'react-native-confetti-cannon';
 
 const sentenceTemplate = "The routine of an SRE is full of %WORD%, facing unexpected %WORD% during the %WORD%. When the %WORD% goes off, it's time to %WORD% tirelessly until the issue is resolved.";
 
@@ -17,6 +18,7 @@ const availableWords = [
 export function MultiChoiceQuestionForm() {
     const totalGaps = sentenceTemplate.split("%WORD%").length - 1;
     const [filledWords, setFilledWords] = useState<(string | null)[]>(Array(totalGaps).fill(null));
+    const confettiRef = useRef<ConfettiCannon | null>(null);
 
     const handleWordSelect = (word: string) => {
         const index = filledWords.findIndex((w) => w === word);
@@ -61,7 +63,7 @@ export function MultiChoiceQuestionForm() {
                             color="gray"
                             fontStyle="italic"
                         >
-                            _________
+                            ______
                         </Text>
                     );
                 }
@@ -71,28 +73,28 @@ export function MultiChoiceQuestionForm() {
         return filled;
     };
 
-    const handleSubmit = () => { };
+    const handleSubmit = () => {
+        confettiRef.current?.start();
+    };
 
 
     return (
-        <YStack padding="$4" gap="$6" flex={1} maxWidth={800} alignSelf="center">
-            <H1 size="$8" fontWeight="700" textAlign="center">
+        <YStack padding="$2" paddingBottom="$4" flex={1} maxWidth={800} alignSelf="center">
+            <H1 marginTop="$4" size="$8" fontWeight="700" textAlign="center">
                 Complete as lacunas
             </H1>
 
-
-
-            <Paragraph size="$5" color="gray" textAlign="center">
+            <Paragraph marginTop="$6" size="$5" color="gray" textAlign="center">
                 Escolha as palavras corretas para completar a frase abaixo:
             </Paragraph>
 
-            <View padding="$4" backgroundColor="$backgroundHover" borderRadius="$4">
+            <View marginTop="$6" padding="$4" backgroundColor="$backgroundHover" borderRadius="$4">
                 <Text fontSize="$6" lineHeight="$7">
                     {getFilledSentence()}
                 </Text>
             </View>
 
-            <XStack flexWrap="wrap" gap="$3" justifyContent="center" marginTop="$4">
+            <XStack flexWrap="wrap" gap="$3" justifyContent="center" marginTop="$6">
                 {availableWords.map((word) => {
                     const isSelected = filledWords.includes(word);
 
@@ -113,6 +115,14 @@ export function MultiChoiceQuestionForm() {
             <View marginTop="auto" alignItems="center">
                 <Button onPress={handleSubmit} theme="green" disabled={filledWords.findIndex((w) => w === null) !== -1} disabledStyle={{ opacity: 0.5 }} fullscreen size="$5">Enviar Resposta</Button>
             </View>
+
+            <ConfettiCannon
+                count={100}
+                origin={{ x: -100, y: 0 }}
+                autoStart={false}
+                fadeOut
+                ref={confettiRef}
+            />
         </YStack>
     );
 }
