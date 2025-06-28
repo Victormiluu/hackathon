@@ -32,7 +32,7 @@ export const App = () => {
 
   return (
     <TamaguiProvider defaultTheme="dark" config={config} disableInjectCSS>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="light-content" backgroundColor="#000" />
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Tabs" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Question" component={Question} />

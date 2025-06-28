@@ -1,5 +1,5 @@
 import { useLinkTo } from "@react-navigation/native";
-import { StarFull } from "@tamagui/lucide-icons";
+import { Check, StarFull } from "@tamagui/lucide-icons";
 import { Button, View } from "tamagui";
 
 type QuestionTrailNavigatorProps = {
@@ -8,23 +8,26 @@ type QuestionTrailNavigatorProps = {
 };
 
 export const QuestionTrailNavigator = ({ index, item }: QuestionTrailNavigatorProps) => {
-    const amplitude = 150;
+    const amplitude = 200;
     const offset = Math.sin(index / 1) * amplitude;
     const triggerTheme = item.Finished ? "green" : item.select ? "blue" : "gray";
     const linkTo = useLinkTo();
+    const icon = item.Finished ? <Check /> : <StarFull />;
 
     const onPress = () => {
-        linkTo(`/Question`);
+        if (!item.Finished) {
+            linkTo(`/Question`);
+        }
     };
 
     return (
         <View marginVertical={20} marginRight={offset} >
             <Button
                 disabled={!item.select && !item.Finished}
-                onTouchStart={onPress}
-                icon={StarFull}
+                onPress={onPress}
+                icon={icon}
                 theme={triggerTheme}
-                size="$9"
+                size="$8"
                 circular
                 borderBottomWidth={10}
                 borderLeftWidth={3}
@@ -32,9 +35,6 @@ export const QuestionTrailNavigator = ({ index, item }: QuestionTrailNavigatorPr
                 borderTopWidth={0}
                 borderColor="$color6"
                 shadowColor="$shadowColor"
-                disabledStyle={{
-                    opacity: 0.5,
-                }}
                 pressStyle={{
                     transform: [{ scaleY: 0.9 }, { scaleX: 1 }],
                     borderBottomWidth: 0,

@@ -1,4 +1,4 @@
-import { ScrollView, YStack } from "tamagui";
+import { ScrollView, XStack, YStack } from "tamagui";
 
 import { QuestionTrailNavigator } from "../components/questionTrailNavigator";
 
