@@ -38,7 +38,7 @@ export default function ImportFilePage() {
     const BaseURI = "https://capp-hackathon-backend-01.calmstone-15122a91.eastus.azurecontainerapps.io";
 
     try {
-      const response = await axios.post(`${BaseURI}/question-generation/`, formData, {
+      const response = await axios.post(`${BaseURI}/content/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         },
