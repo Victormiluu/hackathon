@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Check, StarFull } from "@tamagui/lucide-icons";
 import { Button, View } from "tamagui";
+import { useTheme } from 'tamagui'
 
 type QuestionTrailNavigatorProps = {
     item: any;
@@ -11,7 +12,7 @@ type QuestionTrailNavigatorProps = {
 export const QuestionTrailNavigator = ({ index, item }: QuestionTrailNavigatorProps) => {
     const amplitude = 200;
     const offset = Math.sin(index / 1) * amplitude;
-    const triggerTheme = item.Finished ? "green" : item.select ? "blue" : "gray";
+    const triggerTheme = item.Finished ? "success" : item.select ? "base" : "base"
     const navigation = useNavigation();
 
     const icon = item.Finished ? <Check /> : <StarFull />;

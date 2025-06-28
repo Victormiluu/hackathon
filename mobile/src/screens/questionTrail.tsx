@@ -16,12 +16,12 @@ const data = [{
     Finished: true
 },
 {
-    select: false,
-    Finished: true
+    select: true,
+    Finished: false
 },
 {
-    select: false,
-    Finished: true
+    select: true,
+    Finished: false
 },
 {
     select: true,

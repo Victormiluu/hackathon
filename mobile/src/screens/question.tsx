@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { Button, H1, Progress, View, XStack, YStack } from "tamagui";
+import { Button, H1, Progress, Spinner, View, XStack, YStack } from "tamagui";
 import { X } from "@tamagui/lucide-icons";
 
 import { AudioQuestionForm } from "../components/questions/audioQuestion";
@@ -48,7 +48,7 @@ export const Question = () => {
     if (isLoading) {
         return (
             <YStack height="100%" width="100%" justifyContent="center" alignItems="center" backgroundColor="$background">
-                <H1>Loading...</H1>
+                <Spinner size="large" color="blue"/>
             </YStack>
         );
     }
