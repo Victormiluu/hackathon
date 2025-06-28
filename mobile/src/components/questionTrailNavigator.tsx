@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Check, StarFull } from "@tamagui/lucide-icons";
 import { Button, View } from "tamagui";
@@ -13,7 +14,6 @@ export const QuestionTrailNavigator = ({ index, item }: QuestionTrailNavigatorPr
     const triggerTheme = item.Finished ? "green" : item.select ? "blue" : "gray";
     const navigation = useNavigation();
 
-
     const icon = item.Finished ? <Check /> : <StarFull />;
 
     const onPress = () => {
@@ -23,7 +23,7 @@ export const QuestionTrailNavigator = ({ index, item }: QuestionTrailNavigatorPr
     };
 
     return (
-        <View marginVertical={20} marginRight={offset} >
+        <View marginVertical={20} marginRight={offset} position="relative">
             <Button
                 disabled={!item.select && !item.Finished}
                 onPress={onPress}

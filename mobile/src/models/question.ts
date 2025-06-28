@@ -1,21 +1,31 @@
 type Option = {
     id: number;
-    value: string;
-    question_id: number;
     key: string;
+    value: string;
 };
 
-type Question = {
-    question: string;
-    difficulty_level: 'easy' | 'medium' | 'hard';
+export type MultiChoiceQuestionItem = {
     id: number;
     title: string;
-    question_type: 'multiple_choice' | 'true_false' | 'fill_in_the_blank';
+    question: string;
+    difficulty_level: string;
     correct_answer: string;
+    question_type: "multiple_choice" | "fill_in_the_blank";
     options: Option[];
+    word_options: string[];
 };
 
-export type QuestionType = {
-    question: Question;
-    options: Option[];
+export type FillInTheBlankQuestionItem = {
+    id: number;
+    title: string;
+    question: string;
+    difficulty_level: string;
+    correct_answer: string;
+    question_type: "multiple_choice" | "fill_in_the_blank";
+    word_options: string[];
 };
+
+
+
+
+

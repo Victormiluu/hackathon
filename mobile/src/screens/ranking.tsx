@@ -63,11 +63,11 @@ export const Ranking = () => {
                   ? position === 1
                     ? 'gold'
                     : position === 2
-                    ? 'silver'
-                    : '#cd7f32'
+                      ? 'silver'
+                      : '#cd7f32'
                   : '$borderColor'
               }
-              padding="$3"
+              padding="$4"
             >
               <XStack flex={1} alignItems="center" space="$3" justifyContent="space-between">
                 <XStack alignItems="center" space="$3" flex={1}>
@@ -96,8 +96,8 @@ export const Ranking = () => {
                         position === 1
                           ? 'gold'
                           : position === 2
-                          ? 'silver'
-                          : '#cd7f32'
+                            ? 'silver'
+                            : '#cd7f32'
                       }
                     >
                       {position}°
@@ -105,9 +105,11 @@ export const Ranking = () => {
                   )}
                   {user.identify && (
                     <Text
-                      backgroundColor="$background"
+                      backgroundColor="green"
                       color="white"
-                      paddingHorizontal="$8"
+                      paddingHorizontal="$2"
+                      alignItems='center'
+                      justifyContent='center'
                       paddingVertical={2}
                       borderRadius="$2"
                       fontSize="$5"

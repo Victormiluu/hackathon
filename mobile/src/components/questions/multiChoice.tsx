@@ -1,9 +1,9 @@
-import { YStack, H1, View, Paragraph, XStack, Button, Text } from "tamagui";
+import { YStack, H1, View, Paragraph, XStack, Button, Text, Card } from "tamagui";
 import { useState } from "react";
-import { QuestionType } from "../../models/question";
+import { MultiChoiceQuestionItem } from "../../models/question";
 
 type MultiChoiceQuestionFormProps = {
-    question?: QuestionType;
+    question?: MultiChoiceQuestionItem;
     setQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
     questionIndex: number;
 }
@@ -25,13 +25,13 @@ export function MultiChoiceQuestionForm({ question, questionIndex, setQuestionIn
     };
 
     const handleNextQuestion = () => {
-        setQuestionIndex(questionIndex++);
+        setQuestionIndex(prevIndex => prevIndex + 1);
         setSendResponse(false);
         setIsSelected(undefined);
     }
 
     return (
-        <YStack padding="$2" gap="$6" height="90%" maxWidth={800} alignSelf="center">
+        <YStack padding="$2" gap="$6" height="100%" maxWidth={800} alignSelf="center">
             <H1 size="$8" fontWeight="700" textAlign="center">
                 Escolha a opção correta
             </H1>
@@ -42,7 +42,7 @@ export function MultiChoiceQuestionForm({ question, questionIndex, setQuestionIn
 
             <View padding="$4" backgroundColor="$backgroundHover" borderRadius="$4">
                 <Text fontSize="$6" lineHeight="$7">
-                    {question?.question.question}
+                    {question?.question}
                 </Text>
             </View>
 
@@ -53,7 +53,7 @@ export function MultiChoiceQuestionForm({ question, questionIndex, setQuestionIn
                             key={word.id}
                             onPress={() => handleWordSelect(word.value, word.id, word.key)}
                             disabled={sendResponse}
-                            backgroundColor={sendResponse && question.question.correct_answer === word.key ? "$green7" : sendResponse && question.question.correct_answer !== word.key ? "$red5" : isSelected?.id === word.id ? "gray" : "$background"}
+                            backgroundColor={sendResponse && question.correct_answer === word.key ? "$green7" : sendResponse && question.correct_answer !== word.key ? "$red5" : isSelected?.id === word.id ? "gray" : "$background"}
                             borderRadius="$6">
                             {word.value}
                         </Button>
@@ -63,8 +63,8 @@ export function MultiChoiceQuestionForm({ question, questionIndex, setQuestionIn
 
             <View>
                 {sendResponse && (
-                    <Paragraph marginTop="$6" size="$5" color={question?.question.correct_answer === isSelected?.key ? "$green7" : "$red9"} textAlign="center">
-                        {question?.question.correct_answer === isSelected?.key ? "Resposta Correta!" : `Resposta Incorreta! A resposta correta é: ${question?.question.correct_answer}`}
+                    <Paragraph marginTop="$6" size="$5" color={question?.correct_answer === isSelected?.key ? "$green7" : "$red9"} textAlign="center">
+                        {question?.correct_answer === isSelected?.key ? "Resposta Correta!" : `Resposta Incorreta! A resposta correta é: ${question?.correct_answer}`}
                     </Paragraph>
                 )}
             </View>

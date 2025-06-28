@@ -6,13 +6,14 @@ import { AudioQuestionForm } from "../components/questions/audioQuestion";
 import { MultiChoiceQuestionForm } from "../components/questions/multiChoice";
 import { FillQuestionForm } from "../components/questions/fill";
 import { useEffect, useState } from "react";
-import { QuestionType } from "../models/question";
+import { MultiChoiceQuestionItem, FillInTheBlankQuestionItem } from "../models/question";
 import { getQuestion } from "../api/getQuestion";
+import { refreshQuestion } from "../api/refreshQuestion";
 
 
 export const Question = () => {
     const navigate = useNavigation();
-    const [question, setQuestion] = useState<QuestionType>();
+    const [questions, setQuestions] = useState<MultiChoiceQuestionItem[] | FillInTheBlankQuestionItem[]>();
     const [questionIndex, setQuestionIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -24,7 +25,7 @@ export const Question = () => {
     useEffect(() => {
         setIsLoading(true);
         getQuestion().then((data) => {
-            setQuestion(data);
+            setQuestions(data);
         })
             .catch((error) => {
                 console.error("Error fetching question:", error);
@@ -34,6 +35,16 @@ export const Question = () => {
             });
     }, []);
 
+    useEffect(() => {
+        if (questionIndex !== 0 && questionIndex % 3 === 0) {
+            console.log("Refresh");
+            refreshQuestion().then((data) => {
+                setQuestions((prev) => [...(prev || []), ...data]);
+            });
+        }
+    }, [questionIndex]);
+
+
     if (isLoading) {
         return (
             <YStack height="100%" width="100%" justifyContent="center" alignItems="center" backgroundColor="$background">
@@ -42,18 +53,23 @@ export const Question = () => {
         );
     }
 
-
     return (
         <YStack height="100%" width="100%" backgroundColor="$background">
-            <XStack gap="$2" paddingTop="$10" alignItems="center" >
-                <Button onPress={handleBack} circular icon={X} />
-                <Progress theme="green" value={90} width="80%" height={8} borderRadius="$2" >
-                    <Progress.Indicator animation="bouncy" />
-                </Progress>
-            </XStack>
-
-            <View height="90%">
-                {question && question?.question.question_type === 'multiple_choice' && <MultiChoiceQuestionForm question={question} questionIndex={questionIndex} setQuestionIndex={setQuestionIndex} />}
+            <View paddingTop="$10" height="90%">
+                {questions && questions.length > 0 && questions[questionIndex].question_type === 'multiple_choice' && (
+                    <MultiChoiceQuestionForm
+                        question={questions[questionIndex] as MultiChoiceQuestionItem}
+                        questionIndex={questionIndex}
+                        setQuestionIndex={setQuestionIndex}
+                    />
+                )}
+                {questions && questions.length > 0 && questions[questionIndex].question_type === 'fill_in_the_blank' && (
+                    <FillQuestionForm
+                        question={questions[questionIndex] as FillInTheBlankQuestionItem}
+                        questionIndex={questionIndex}
+                        setQuestionIndex={setQuestionIndex}
+                    />
+                )}
             </View>
         </YStack>
     );
