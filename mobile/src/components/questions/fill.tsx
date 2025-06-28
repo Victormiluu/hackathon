@@ -73,22 +73,22 @@ export function FillQuestionForm({ question }: FillQuestionFormProps) {
 
 
     return (
-        <YStack padding="$2" paddingBottom="$4" flex={1} maxWidth={800} alignSelf="center">
-            <H1 marginTop="$4" size="$8" fontWeight="700" textAlign="center">
+        <YStack padding="$2" gap="$6" height="90%" maxWidth={800} alignSelf="center">
+            <H1 size="$8" fontWeight="700" textAlign="center">
                 Complete as lacunas
             </H1>
 
-            <Paragraph marginTop="$6" size="$5" color="gray" textAlign="center">
+            <Paragraph size="$5" color="gray" textAlign="center">
                 Escolha as palavras corretas para completar a frase abaixo:
             </Paragraph>
 
-            <View marginTop="$6" padding="$4" backgroundColor="$backgroundHover" borderRadius="$4">
+            <View padding="$4" backgroundColor="$backgroundHover" borderRadius="$4">
                 <Text fontSize="$6" lineHeight="$7">
                     {getFilledSentence()}
                 </Text>
             </View>
 
-            <XStack flexWrap="wrap" gap="$3" justifyContent="center" marginTop="$6">
+            <XStack flexWrap="wrap" gap="$3" justifyContent="center">
                 {question?.options.map((item) => {
                     const isSelected = filledWords.includes(item.value);
 

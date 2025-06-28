@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { Button, H1, Progress, XStack, YStack } from "tamagui";
+import { Button, H1, Progress, View, XStack, YStack } from "tamagui";
 import { X } from "@tamagui/lucide-icons";
 
 import { AudioQuestionForm } from "../components/questions/audioQuestion";
@@ -52,9 +52,9 @@ export const Question = () => {
                 </Progress>
             </XStack>
 
-            <YStack height="82%">
+            <View height="90%">
                 {question && question?.question.question_type === 'multiple_choice' && <MultiChoiceQuestionForm question={question} questionIndex={questionIndex} setQuestionIndex={setQuestionIndex} />}
-            </YStack>
+            </View>
         </YStack>
     );
 }
