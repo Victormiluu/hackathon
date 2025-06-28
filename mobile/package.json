@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-navigation/bottom-tabs": "^7.4.2",
     "@react-navigation/native": "^7.1.14",
+    "@react-navigation/native-stack": "^7.3.21",
     "@tamagui/config": "^1.129.4",
     "@tamagui/lucide-icons": "^1.129.4",
     "@tamagui/portal": "^1.129.4",

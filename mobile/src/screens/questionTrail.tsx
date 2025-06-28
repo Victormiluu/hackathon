@@ -90,9 +90,9 @@ const data = [{
 export const QuestionTrail = () => {
 
     return (
-        <YStack height="100%" width="100%" paddingTop="$10" backgroundColor="$background">
-            <ScrollView>
-                <YStack flex={1} alignItems="center" justifyContent="center" >
+        <YStack height="100%" width="100%" backgroundColor="$background">
+            <ScrollView >
+                <YStack paddingVertical="$13" flex={1} alignItems="center" justifyContent="center" >
                     {data.map((item, index) => (<QuestionTrailNavigator key={index} item={item} index={index} />))}
                 </YStack>
             </ScrollView>
