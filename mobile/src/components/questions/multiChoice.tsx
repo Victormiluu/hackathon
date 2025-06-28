@@ -71,14 +71,16 @@ export function MultiChoiceQuestionForm() {
         return filled;
     };
 
-
+    const handleSubmit = () => { };
 
 
     return (
-        <YStack padding="$4" space="$6" maxWidth={800} alignSelf="center">
+        <YStack padding="$4" gap="$6" flex={1} maxWidth={800} alignSelf="center">
             <H1 size="$8" fontWeight="700" textAlign="center">
                 Complete as lacunas
             </H1>
+
+
 
             <Paragraph size="$5" color="gray" textAlign="center">
                 Escolha as palavras corretas para completar a frase abaixo:
@@ -107,6 +109,10 @@ export function MultiChoiceQuestionForm() {
                     );
                 })}
             </XStack>
+
+            <View marginTop="auto" alignItems="center">
+                <Button onPress={handleSubmit} theme="green" disabled={filledWords.findIndex((w) => w === null) !== -1} disabledStyle={{ opacity: 0.5 }} fullscreen size="$5">Enviar Resposta</Button>
+            </View>
         </YStack>
     );
 }

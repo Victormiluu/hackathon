@@ -1,6 +1,8 @@
+import { Mic, Pause, Play, X } from "@tamagui/lucide-icons";
 import { Audio } from "expo-av"
 import { useEffect, useState } from "react"
-import { Button, Text, YStack } from "tamagui"
+import { YStack, H1, View, Paragraph, Button } from "tamagui";
+
 
 export function AudioQuestionForm() {
     const [recording, setRecording] = useState<Audio.Recording | null>(null)
@@ -69,20 +71,37 @@ export function AudioQuestionForm() {
         }
     }
 
+    const handleSubmit = () => { };
+
     return (
-        <YStack space="$3">
-            <Text>{recording ? "Gravando..." : "Pronto para gravar"}</Text>
+        <YStack padding="$4" gap="$6" flex={1} maxWidth={800} alignSelf="center">
+            <H1 size="$8" fontWeight="700" textAlign="center">
+                Conte como é a rotina de um SRE
+            </H1>
 
-            <Button onPress={recording ? stopRecording : startRecording}>
-                {recording ? "Parar Gravação" : "Iniciar Gravação"}
-            </Button>
+            <Paragraph size="$5" color="gray" textAlign="center">
+                Grave um breve relato explicando o dia a dia de um(a) Site Reliability Engineer. Fale sobre atividades comuns, responsabilidades e principais desafios da função.
+            </Paragraph>
 
-            {recordedURI && (
-                <>
-                    <Text>Áudio salvo em: {recordedURI}</Text>
-                    <Button onPress={playRecording}>Reproduzir Áudio</Button>
-                </>
-            )}
+            <YStack gap="$3" flex={1} alignItems="center" justifyContent="center" marginTop="$4">
+                {recording ? (
+                    <Button circular icon={Pause} size="$13" onPress={stopRecording} />
+                ) : (
+                    recordedURI ? (
+                        <View>
+                            <Button circular icon={Play} size="$13" onPress={playRecording} />
+                            <Button circular theme="red" icon={X} size="$5" onPress={() => setRecordedURI(null)} />
+                        </View>
+                    ) : (
+                        <Button circular icon={Mic} size="$13" onPress={startRecording} />
+                    )
+                )}
+            </YStack>
+
+
+            <View marginTop="auto" alignItems="center">
+                <Button onPress={handleSubmit} theme="green" disabled={!recordedURI} disabledStyle={{ opacity: 0.5 }} fullscreen size="$5">Enviar Resposta</Button>
+            </View>
         </YStack>
     )
 }
