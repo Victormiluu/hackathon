@@ -12,6 +12,8 @@ import { Profile } from "./screens/profile";
 import { Ranking } from "./screens/ranking";
 import { Question } from "./screens/question";
 import { StatusBar } from "react-native";
+import { HeaderBar } from "./components/headerBar";
+
 
 
 

@@ -1,6 +1,9 @@
 import { ScrollView, XStack, YStack } from "tamagui";
 
 import { QuestionTrailNavigator } from "../components/questionTrailNavigator";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { HeaderBar } from "../components/headerBar";
+import { LayoutList } from "@tamagui/lucide-icons";
 
 const data = [{
     select: false,
@@ -87,12 +90,15 @@ const data = [{
     Finished: false
 }];
 
+
+
 export const QuestionTrail = () => {
 
     return (
         <YStack height="100%" width="100%" backgroundColor="$background">
+            <HeaderBar/>
             <ScrollView >
-                <YStack paddingVertical="$13" flex={1} alignItems="center" justifyContent="center" >
+                <YStack paddingVertical="$4" flex={1} alignItems="center" justifyContent="center" >
                     {data.map((item, index) => (<QuestionTrailNavigator key={index} item={item} index={index} />))}
                 </YStack>
             </ScrollView>
