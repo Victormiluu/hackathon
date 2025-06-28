@@ -14,9 +14,9 @@ export const Ranking = () => {
   const theme = useTheme()
 
   const rankingData = [
-    { id: 1, name: 'Ana Silva', streak: 42 },
-    { id: 2, name: 'Carlos Oliveira', streak: 38 },
-    { id: 3, name: 'Mariana Costa', streak: 35 },
+    { id: 1, name: 'Rafael Canto', streak: 42 },
+    { id: 2, name: 'Victor Milu', streak: 38 },
+    { id: 3, name: 'Gustavo Henrico', streak: 35 },
     { id: 4, name: 'Pedro Santos', streak: 28 },
     { id: 5, name: 'Juliana Pereira', streak: 25, identify: true },
     { id: 6, name: 'Fernando Almeida', streak: 22 },
@@ -70,7 +70,6 @@ export const Ranking = () => {
               padding="$3"
             >
               <XStack flex={1} alignItems="center" space="$3" justifyContent="space-between">
-                {/* Left section: position, avatar, name, streak */}
                 <XStack alignItems="center" space="$3" flex={1}>
                   {renderPositionBadge(position)}
 
@@ -88,7 +87,6 @@ export const Ranking = () => {
                   </YStack>
                 </XStack>
 
-                {/* Right section: "you" badge or position number */}
                 <YStack alignItems="flex-end">
                   {isTop3 && (
                     <Text
