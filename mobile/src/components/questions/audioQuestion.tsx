@@ -2,14 +2,13 @@ import { Mic, Pause, Play, X } from "@tamagui/lucide-icons";
 import { Audio } from "expo-av"
 import { useEffect, useRef, useState } from "react"
 import { YStack, H1, View, Paragraph, Button } from "tamagui";
-import ConfettiCannon from 'react-native-confetti-cannon';
 
 
 export function AudioQuestionForm() {
     const [recording, setRecording] = useState<Audio.Recording | null>(null)
     const [recordedURI, setRecordedURI] = useState<string | null>(null)
     const [sound, setSound] = useState<Audio.Sound | null>(null)
-    const confettiRef = useRef<ConfettiCannon | null>(null);
+
 
     useEffect(() => {
         const requestPermission = async () => {
@@ -73,7 +72,9 @@ export function AudioQuestionForm() {
         }
     }
 
-    const handleSubmit = () => { };
+    const handleSubmit = () => {
+
+    };
 
     return (
         <YStack padding="$2" flex={1} maxWidth={800} alignSelf="center">
@@ -105,13 +106,7 @@ export function AudioQuestionForm() {
                 <Button onPress={handleSubmit} theme="green" disabled={!recordedURI} disabledStyle={{ opacity: 0.5 }} fullscreen size="$5">Enviar Resposta</Button>
             </View>
 
-            <ConfettiCannon
-                count={100}
-                origin={{ x: -100, y: 0 }}
-                autoStart={false}
-                fadeOut
-                ref={confettiRef}
-            />
+
         </YStack>
     )
 }

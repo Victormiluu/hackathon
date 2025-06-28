@@ -1,18 +1,47 @@
-import { Button, H1, Progress, ScrollView, XStack, YStack } from "tamagui";
+import { useNavigation } from "@react-navigation/native";
+import { Button, H1, Progress, XStack, YStack } from "tamagui";
+import { X } from "@tamagui/lucide-icons";
 
 import { AudioQuestionForm } from "../components/questions/audioQuestion";
 import { MultiChoiceQuestionForm } from "../components/questions/multiChoice";
 import { FillQuestionForm } from "../components/questions/fill";
-import { X } from "@tamagui/lucide-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import { QuestionType } from "../models/question";
+import { getQuestion } from "../api/getQuestion";
 
 
 export const Question = () => {
     const navigate = useNavigation();
+    const [question, setQuestion] = useState<QuestionType>();
+    const [questionIndex, setQuestionIndex] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleBack = () => {
         navigate.goBack();
     }
+
+
+    useEffect(() => {
+        setIsLoading(true);
+        getQuestion().then((data) => {
+            setQuestion(data);
+        })
+            .catch((error) => {
+                console.error("Error fetching question:", error);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, []);
+
+    if (isLoading) {
+        return (
+            <YStack height="100%" width="100%" justifyContent="center" alignItems="center" backgroundColor="$background">
+                <H1>Loading...</H1>
+            </YStack>
+        );
+    }
+
 
     return (
         <YStack height="100%" width="100%" backgroundColor="$background">
@@ -24,7 +53,7 @@ export const Question = () => {
             </XStack>
 
             <YStack height="82%">
-                <MultiChoiceQuestionForm />
+                {question && question?.question.question_type === 'multiple_choice' && <MultiChoiceQuestionForm question={question} questionIndex={questionIndex} setQuestionIndex={setQuestionIndex} />}
             </YStack>
         </YStack>
     );

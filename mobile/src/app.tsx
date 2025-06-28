@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { LayoutList, Trophy, User } from "@tamagui/lucide-icons";
-import ConfettiCannon from 'react-native-confetti-cannon';
 
 import { TabBar } from "./components/tabBar";
 
@@ -14,7 +13,6 @@ import { Profile } from "./screens/profile";
 import { Ranking } from "./screens/ranking";
 import { Question } from "./screens/question";
 import { StatusBar } from "react-native";
-import { HeaderBar } from "./components/headerBar";
 
 
 const Tabs = () => {
